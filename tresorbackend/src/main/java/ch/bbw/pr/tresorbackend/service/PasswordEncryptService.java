@@ -18,7 +18,7 @@ public class PasswordEncryptService {
       //todo add implementation here
    }
 
-   public String hashPassword(String password, String salt) {
+   public String hashPassword(String password) {
       //todo add implementation here
       return encoder.encode(password);
    }

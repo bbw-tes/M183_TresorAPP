@@ -190,6 +190,10 @@ public class UserController {
 
       //ToDo: add verification for password match: loginUser.getPassword() vs user.getPassword
       //todo add implementation
+      if (!passwordService.doPasswordMatch(loginUser.getPassword(), user.getPassword())) {
+         return ResponseEntity.badRequest().body(new LoginResponse("Wrong password",null));
+      }
+
 
       System.out.println("UserController.doLoginUser: login successful");
       return ResponseEntity.ok(new LoginResponse("Login successful", user.getId()));
