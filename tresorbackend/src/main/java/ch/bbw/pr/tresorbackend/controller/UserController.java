@@ -59,8 +59,9 @@ public class UserController {
       }
       System.out.println("UserController.createUser: input validation passed");
 
-      //password validation
+
       //todo add implementation
+      // Password will be hashed bevor saving (bycrypt does that automatically)
       System.out.println("UserController.createUser, password validation passed");
 
       //transform registerUser to user
@@ -190,10 +191,10 @@ public class UserController {
 
       //ToDo: add verification for password match: loginUser.getPassword() vs user.getPassword
       //todo add implementation
+      // Plain password vs stored hash
       if (!passwordService.doPasswordMatch(loginUser.getPassword(), user.getPassword())) {
          return ResponseEntity.badRequest().body(new LoginResponse("Wrong password",null));
       }
-
 
       System.out.println("UserController.doLoginUser: login successful");
       return ResponseEntity.ok(new LoginResponse("Login successful", user.getId()));
