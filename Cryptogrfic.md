@@ -61,4 +61,4 @@ Eingabe Passwort <br>
   Mit DB Hash vergleichen
 
 
-# Secret Encyrpten 
+# Secret Encryption
