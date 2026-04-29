@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import {useState} from "react";
 import {postUserLogin} from "../../comunication/FetchUser";
 
-/**
+/***
  * LoginUser
  * @author Peter Rutschmann
  * @author Sabina Teleskumar
