@@ -16,11 +16,13 @@ import NewNote from "./pages/secret/NewNote";
 /**
  * App
  * @author Peter Rutschmann
+ * @author Sabina Teleskumar
  */
 function App() {
     const [loginValues, setLoginValues] = useState({
         email: "",
         password: "",
+        userId: null //Backend has it but was not here => undefined == Logic problems
     });
     return (
         <BrowserRouter>

@@ -9,7 +9,8 @@ const Layout = ({loginValues}) => {
         <>
             <nav>
                 <h1>The secret tresor application</h1>
-                <p>{loginValues.email === '' ? 'No user logged in' : 'user:' + loginValues.email}</p>
+                <p>{loginValues.userId === null
+                    ? 'No user logged in' : 'user:' + loginValues.email}</p>
                 <ul>
                     <li><span>Secrets</span>
                     <ul>

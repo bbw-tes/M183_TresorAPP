@@ -65,12 +65,15 @@ public class UserController {
       System.out.println("UserController.createUser, password validation passed");
 
       //transform registerUser to user
+      String salt = java.util.UUID.randomUUID().toString();
+
       User user = new User(
             null,
             registerUser.getFirstName(),
             registerUser.getLastName(),
             registerUser.getEmail(),
-            passwordService.hashPassword(registerUser.getPassword())
+            passwordService.hashPassword(registerUser.getPassword()),
+              salt
             );
 
       User savedUser = userService.createUser(user);

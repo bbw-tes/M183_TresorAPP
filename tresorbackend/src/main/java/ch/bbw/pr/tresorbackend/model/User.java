@@ -9,6 +9,7 @@ import lombok.Setter;
 /**
  * User
  * @author Peter Rutschmann
+ * @author Sabina Teleskumar
  */
 @Getter
 @Setter
@@ -32,4 +33,7 @@ public class User {
 
    @Column(nullable = false)
    private String password;
+
+   @Column(nullable = false)
+   private String salt;
 }

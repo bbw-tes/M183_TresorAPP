@@ -5,6 +5,7 @@ import {postUserLogin} from "../../comunication/FetchUser";
 /**
  * LoginUser
  * @author Peter Rutschmann
+ * @author Sabina Teleskumar
  */
 function LoginUser({loginValues, setLoginValues}) {
     const navigate = useNavigate();
@@ -16,7 +17,12 @@ function LoginUser({loginValues, setLoginValues}) {
         setErrorMessage('');
 
         try {
-            await postUserLogin(loginValues);
+            const data = await postUserLogin(loginValues);
+            // save UserID from Backend
+            setLoginValues(prevValues => ({
+                ...prevValues,
+                userId: data.userId
+            }));
             navigate('/');
         } catch (error) {
             console.error('Failed to fetch to server:', error.message);
