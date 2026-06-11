@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 /**
  * UserController
  * @author Peter Rutschmann
+ * @author Sabina Teleskumar
  */
 @RestController
 @AllArgsConstructor
@@ -63,6 +64,13 @@ public class UserController {
       //todo add implementation
       // Password will be hashed bevor saving (bycrypt does that automatically)
       System.out.println("UserController.createUser, password validation passed");
+
+      //Check if password == passwordConfirmation
+      if (!registerUser.getPassword().equals(registerUser.getPasswordConfirmation())) {
+         JsonObject obj = new JsonObject();
+         obj.addProperty("message", "Password and confirmation do not match.");
+         return ResponseEntity.badRequest().body(new Gson().toJson(obj));
+      }
 
       //transform registerUser to user
       String salt = java.util.UUID.randomUUID().toString();
