@@ -1,7 +1,6 @@
 package ch.bbw.pr.tresorbackend.util;
 
 import ch.bbw.pr.tresorbackend.model.Secret;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -41,7 +40,7 @@ public class EncryptUtil {
    public String encrypt(String data) {
       //todo anpassen!
       try {
-         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS%Padding");
+         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
          cipher.init(Cipher.ENCRYPT_MODE, secretKey);
          byte[] encrypted = cipher.doFinal(data.getBytes());
          return Base64.getEncoder().encodeToString(encrypted);
