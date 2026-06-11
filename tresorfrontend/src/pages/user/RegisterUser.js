@@ -112,7 +112,7 @@ function RegisterUser({loginValues, setLoginValues}) {
                                 backgroundColor: passwordStrength <= 25 ? 'red' : passwordStrength <= 50 ? 'orange' : passwordStrength <= 75 ? 'yellow' : 'green',
                                 transition: 'width 0.3s'
                             }}/>
-                            <small>{passwordStrength}% - {passwordStrength <= 25 ? 'Sehr schwach' : passwordStrength <= 50 ? 'Switch' : passwordStrength <= 75 ? 'Mittel' : 'Stark'}</small>
+                            <small>{passwordStrength}% - {passwordStrength <= 25 ? 'Sehr schwach' : passwordStrength <= 50 ? 'Schwach' : passwordStrength <= 75 ? 'Mittel' : 'Stark'}</small>
                         </div>
                         <div>
                             <label>Password confirmation:</label>
