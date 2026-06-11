@@ -5,6 +5,7 @@ import {postUser} from "../../comunication/FetchUser";
 /**
  * RegisterUser
  * @author Peter Rutschmann
+ * @author Sabina Teleskumar
  */
 function RegisterUser({loginValues, setLoginValues}) {
     const navigate = useNavigate();
@@ -19,6 +20,16 @@ function RegisterUser({loginValues, setLoginValues}) {
     };
     const [credentials, setCredentials] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState('');
+    const [passwordStrength, setPasswordStrength] = useState(0);
+
+    const calculatePasswordStrength = (password) => {
+        let score = 0;
+        if (password.length >= 8)       score +=25;
+        if (/[A-Z]/.test(password))     score +=25;
+        if (/\d/.test(password))        score +=25; //Ziffer
+        if (/[@$!%*?&]/.test(password)) score +=25; //Sonderzeichen
+        return score;
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -88,11 +99,20 @@ function RegisterUser({loginValues, setLoginValues}) {
                             <input
                                 type="text"
                                 value={credentials.password}
-                                onChange={(e) =>
-                                    setCredentials(prevValues => ({...prevValues, password: e.target.value}))}
+                                onChange={(e) => {
+                                    setCredentials(prevValues => ({...prevValues, password: e.target.value}));
+                                    setPasswordStrength(calculatePasswordStrength(e.target.value));
+                            }}
                                 required
                                 placeholder="Please enter your pwd *"
                             />
+                            <div style={{
+                                height: '8px',
+                                width: `${passwordStrength}%`,
+                                backgroundColor: passwordStrength <= 25 ? 'red' : passwordStrength <= 50 ? 'orange' : passwordStrength <= 75 ? 'yellow' : 'green',
+                                transition: 'width 0.3s'
+                            }}/>
+                            <small>{passwordStrength}% - {passwordStrength <= 25 ? 'Sehr schwach' : passwordStrength <= 50 ? 'Switch' : passwordStrength <= 75 ? 'Mittel' : 'Stark'}</small>
                         </div>
                         <div>
                             <label>Password confirmation:</label>
